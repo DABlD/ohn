@@ -10,7 +10,7 @@
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="fas fa-table mr-1"></i>
-                            Transferred to BHC
+                            Transferred to Branch
                         </h3>
                     </div>
 

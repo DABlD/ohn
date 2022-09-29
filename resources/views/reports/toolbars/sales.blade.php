@@ -7,7 +7,7 @@
 	        </div>
 	        <div class="col-md-8 iInput">
 	        	<select id="fby" class="form-control">
-	        		<option value="bhc_id">Outlet</option>
+	        		<option value="bhc_id">Branch</option>
 	        		<option value="medicine_id">Item/Product</option>
 	        	</select>
 	        </div>

@@ -46,13 +46,13 @@ class ReportController extends Controller
 
     public function toRhu(){
         return $this->_view('toRhu', [
-            'title' => 'Transferred to RHU',
+            'title' => 'Transferred to Franchise',
         ]);
     }
 
     public function toBarangay(){
         return $this->_view('toBarangay', [
-            'title' => 'Transferred to Barangay',
+            'title' => 'Transferred to Branch',
         ]);
     }
 

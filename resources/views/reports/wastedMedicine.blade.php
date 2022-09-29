@@ -10,7 +10,7 @@
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="fas fa-table mr-1"></i>
-                            Transferred to RHU
+                            Transferred to Franchise
                         </h3>
                     </div>
 

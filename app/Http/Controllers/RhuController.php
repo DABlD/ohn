@@ -14,7 +14,7 @@ class RhuController extends Controller
 
     public function index(){
         return $this->_view('index', [
-            'title' => 'Rural Health Unit'
+            'title' => 'Franchise'
         ]);
     }
 

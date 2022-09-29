@@ -1,109 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+
 <head>
-	<title>{{ "SEDI | " . "Login" }}</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<link rel="stylesheet" href="{{ asset('fonts/fontawesome.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/auth/animate.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/auth/hamburgers.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/auth/util.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/auth/main.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com/"></script>
 	<link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
-
-	<style>
-	@if(isset($theme['login_bg_img']))
-			.container-login100{
-				background-image: url("{{ $theme['login_bg_img'] }}");
-				background-size: cover;
-				background-repeat: no-repeat;
-				background-position: center center;
-			}
-	@endif
-	</style>
 </head>
 <body>
-	
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<div class="login100-pic js-tilt" data-tilt>
-					<img src="{{ asset($theme['login_banner_img'] ?? "images/sedi_logo.png") }}" width="500" height="300" alt="IMG">
-				</div>
+<section class="min-h-screen flex items-stretch text-white ">
+    <div class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
+         style="background-image: url({{ asset('images/ohn/piddig/clinic.jpg') }});">
+        <div class="absolute bg-black opacity-30 inset-0 z-0"></div>
+        <div class="w-full px-24 z-10">
+            <h1 class="text-5xl font-bold text-left tracking-wide">Clinic Management System</h1>
+            <p class="text-3xl my-4">PREVENTIVE HEALTHCARE. NOW.</p>
+        </div>
+    </div>
+    <div class="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 z-0 bg-slate-200">
+        <div class="absolute lg:hidden z-10 inset-0 bg-gray-500 bg-no-repeat bg-cover items-center"
+             style="background-image: url({{ asset('images/ohn/piddig/clinic.jpg') }});">
+            <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
+        </div>
+        <div class="w-full py-6 z-20">
+            <h1 class="my-6">
+                <img class="w-auto h-40 inline-flex" src="{{ asset('images/ohn/OneHealthClinix1.png') }}">
+            </h1>
+            <form method="POST" action="{{ route('login') }}" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+				@csrf
+                <div class="pb-2 pt-4">
+                    <input type="text" name="username" id="username" placeholder="Username"
+                           class=" text-gray-700 rounded-md block w-full p-4 text-lg rounded-sm bg-white">
+                </div>
+                <div class="pb-2 pt-4">
+                    <input class="text-gray-700 rounded-md block w-full p-4 text-lg rounded-sm bg-white" type="password"
+                           name="password" id="password" placeholder="Password">
+                </div>
+                {{-- <div class="text-right text-gray-400 hover:underline hover:text-gray-100">
+                    <a href="#">Forgot your password?</a>
+                </div> --}}
+                <div class="px-4 pb-2 pt-4">
+                    <button id="loginBtn" type="submit" class="uppercase block w-full p-4 text-lg rounded-full bg-blue-500 hover:bg-indigo-600 focus:outline-none">
+                        sign in
+                    </button>
+                </div>
+                {{-- <div class="text-center text-black">
+                    <p>Doesn't have an account?</p><a href="http://clinica.onehealthnetwork.com.ph/register" class="text-blue-400 hover:underline hover:text-black-200"">Register Here</a>
+                </div> --}}
 
-				<form class="login100-form validate-form" method="POST" action="{{ route('login'); }}">
-					@csrf
-					<span class="login100-form-title">
-						Welcome
-					</span>
+            </form>
+        </div>
+    </div>
+</section>
 
-					<div class="wrap-input100">
-						<input class="input100" type="text" name="username" placeholder="Username">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="far fa-id-card"></i>
-						</span>
-					</div>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap-bundle.min.js') }}"></script>
+<script src="{{ asset('js/ohn/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('js/ohn/validate.js') }}"></script>
+<script src="{{ asset('js/ohn/jquery.waypoints.min.js') }}"></script>
+<script src="{{ asset('js/ohn/isotope.pkgd.min.js') }}"></script>
+<script src="{{ asset('js/ohn/venobox.min.js') }}"></script>
+<script src="{{ asset('js/ohn/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('js/ohn/aos.js') }}"></script>
+<script src="{{ asset('js/ohn/baguetteBox.min.js') }}"></script>
+<script src="{{ asset('js/ohn/vanilla-zoom.js') }}"></script>
+<script src="{{ asset('js/ohn/theme.js') }}"></script>
+<script src="{{ asset('js/ohn/mainbc19.js?1664408744') }}"></script>
+<script src="{{ asset('js/sweetalert2.min.js') }}"></script>
 
-					<div class="wrap-input100">
-						<input class="input100" type="password" name="password" placeholder="Password">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-					</div>
-					
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Login
-						</button>
-					</div>
-					
-					{{-- <div class="container-register100-form-btn">
-					</div> --}}
-
-					<div class="text-center p-t-12" style="visibility: hidden;">
-						<span class="txt1">
-							Forgot
-						</span>
-						<a class="txt2" href="#">
-							Password?
-						</a>
-					</div>
-
-					<div class="text-center p-t-136" style="visibility: hidden;">
-						<a class="txt2" href="{{ route('register') }}">
-							Create your account
-							<i class="fas fa-arrow-right"></i>
-						</a>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-	<script src="{{ asset('js/jquery.min.js') }}"></script>
-	<script src="{{ asset('js/bootstrap-bundle.min.js') }}"></script>
-	<script src="{{ asset('js/auth/tilt.js') }}"></script>
-	<script src="{{ asset('js/auth/main.js') }}"></script>
-	<script src="{{ asset('js/sweetalert2.min.js') }}"></script>
-	<script >
-		$('.js-tilt').tilt({
-			scale: 1.1
-		})
-
-		@if($errors->all())
-			Swal.fire({
-				icon: 'error',
-                html: `
-                    @foreach ($errors->all() as $error)
-                        {{ $error }}<br/>
-                    @endforeach
-                `,
-			});
-		@endif
-	</script>
-
+<script>
+	@if($errors->all())
+		Swal.fire({
+			icon: 'error',
+            html: `
+                @foreach ($errors->all() as $error)
+                    {{ $error }}<br/>
+                @endforeach
+            `,
+		});
+	@endif
+</script>
 </body>
 </html>

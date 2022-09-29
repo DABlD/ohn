@@ -23,7 +23,7 @@
                     		<thead>
                     			<tr>
                     				<th>ID</th>
-                    				<th>RHU</th>
+                    				<th>Franchise</th>
                     				<th>Code</th>
                     				<th>Name</th>
                     				<th>Region</th>
@@ -115,7 +115,7 @@
 		        			$(row).after(`
 		        				<td>
                         			@if(auth()->user()->role == "Admin")
-		        					<a class='btn btn-primary btn-sm' data-toggle='tooltip' title='Add Bhc' onclick='create("${rhu}")'>
+		        					<a class='btn btn-primary btn-sm' data-toggle='tooltip' title='Add Branch' onclick='create("${rhu}")'>
 		        					    <i class='fas fa-plus fa-2xl'></i>
 		        					</a>
 		        					@endif
@@ -139,7 +139,7 @@
 				html: `
 					<div class="row iRow">
 					    <div class="col-md-3 iLabel">
-					        RHU
+					        Franchise
 					    </div>
 					    <div class="col-md-9 iInput">
 					        <select name="rhu_id" class="form-control">
@@ -175,7 +175,7 @@
 
 							$("[name='rhu_id']").append(rhuString);
 							$("[name='rhu_id']").select2({
-								placeholder: "Select RHU"
+								placeholder: "Select Franchise"
 							});
 
 							if(selectedRhu){
@@ -255,7 +255,7 @@
 
 							$("[name='rhu_id']").append(rhuString);
 							$("[name='rhu_id']").select2({
-								placeholder: "Select RHU"
+								placeholder: "Select Franchise"
 							});
 						}
 					})

@@ -72,7 +72,7 @@
                     	<table id="table" class="table table-hover">
                     		<thead>
                     			<tr>
-                    				<th>RHU</th>
+                    				<th>Franchise</th>
                     				<th>Ref No</th>
                     				<th>Particulars</th>
                     				<th>Request Date</th>
@@ -444,7 +444,7 @@
 						<div class="col-md-5">
 							<div class="row">
 								<div class="col-md-5 reqLabel">
-									RHU:
+									Franchise:
 								</div>
 								<div class="col-md-7">
 									${reqName}

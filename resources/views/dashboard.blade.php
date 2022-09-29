@@ -10,7 +10,7 @@
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="fas fa-chart-line mr-1"></i>
-                            Sales Per RHU
+                            Sales Per Franchise
                         </h3>
                     </div>
 

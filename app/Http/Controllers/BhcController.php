@@ -14,7 +14,7 @@ class BhcController extends Controller
 
     public function index(){
         return $this->_view('index', [
-            'title' => 'Barangay Health Center'
+            'title' => 'Branch'
         ]);
     }
 

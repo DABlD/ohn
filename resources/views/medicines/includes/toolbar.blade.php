@@ -12,11 +12,11 @@
     <div class="col-md-3">
         <div class="row iRow">
             <div class="col-md-5 iLabel" style="margin: auto;">
-                View RHU's Stock
+                View Franchise's Stock
             </div>
             <div class="col-md-7 iInput">
                 <select id="user_id" class="form-control">
-                    <option value="{{ auth()->user()->id }}">Select RHU / All</option>
+                    <option value="{{ auth()->user()->id }}">Select Franchise / All</option>
                 </select>
             </div>
         </div>

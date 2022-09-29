@@ -3,7 +3,7 @@
 
 	    <div class="row iRow">
 	        <div class="col-md-4 iLabel" style="margin: auto;">
-	            Select BHC
+	            Select Branch
 	        </div>
 	        <div class="col-md-8 iInput">
 	        	<select id="outlet" class="form-control">

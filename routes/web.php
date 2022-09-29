@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return redirect()->route('login');
+});
 
-Route::view('/', 'welcome');
+// Route::view('/', 'welcome');
 
 Route::group([
         'middleware' => 'auth',
@@ -164,7 +164,7 @@ Route::group([
                 Route::get("/", ucfirst($cname) . "Controller@index")
                     ->defaults("sidebar", 1)
                     ->defaults("icon", "fas fa-hospital-user")
-                    ->defaults("name", "Rural Health Unit")
+                    ->defaults("name", "Franchise")
                     ->defaults("roles", array("Admin"))
                     ->defaults("group", "Settings")
                     ->name($cname)
@@ -187,7 +187,7 @@ Route::group([
                 Route::get("/", ucfirst($cname) . "Controller@index")
                     ->defaults("sidebar", 1)
                     ->defaults("icon", "fas fa-clinic-medical")
-                    ->defaults("name", "Barangay Health Center")
+                    ->defaults("name", "Branch")
                     ->defaults("roles", array("Admin", "RHU"))
                     ->defaults("group", "Settings")
                     ->name($cname)
@@ -407,7 +407,7 @@ Route::group([
                 Route::get("toBarangay/", ucfirst($cname) . "Controller@toBarangay")
                     ->defaults("sidebar", 1)
                     ->defaults("icon", "fa-solid fa-right-left")
-                    ->defaults("name", "Transferred to Barangay")
+                    ->defaults("name", "Transferred to Branch")
                     ->defaults("roles", array("Admin", "RHU"))
                     ->defaults("group", "Reports")
                     ->name('toBarangay')
