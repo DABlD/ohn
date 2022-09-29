@@ -393,7 +393,7 @@ Route::group([
                 Route::get("toRhu/", ucfirst($cname) . "Controller@toRhu")
                     ->defaults("sidebar", 1)
                     ->defaults("icon", "fa-solid fa-right-left")
-                    ->defaults("name", "Transferred to RHU")
+                    ->defaults("name", "Transferred to Franchise")
                     ->defaults("roles", array("Admin"))
                     ->defaults("group", "Reports")
                     ->name('toRhu')
