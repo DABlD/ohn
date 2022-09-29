@@ -13,7 +13,7 @@
          style="background-image: url({{ asset('images/ohn/piddig/clinic.jpg') }});">
         <div class="absolute bg-black opacity-30 inset-0 z-0"></div>
         <div class="w-full px-24 z-10">
-            <h1 class="text-5xl font-bold text-left tracking-wide">Clinic Management System</h1>
+            <h1 class="text-5xl font-bold text-left tracking-wide">Pharmacy Inventory System</h1>
             <p class="text-3xl my-4">PREVENTIVE HEALTHCARE. NOW.</p>
         </div>
     </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="w-full py-6 z-20">
             <h1 class="my-6">
-                <img class="w-auto h-40 inline-flex" src="{{ asset('images/ohn/OneHealthClinix1.png') }}">
+                <img class="w-auto h-40 inline-flex" src="{{ asset('images/ohn/OneHealthPharmacy2.png') }}" style="width: 250px !important; height: 250px !important">
             </h1>
             <form method="POST" action="{{ route('login') }}" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
 				@csrf
