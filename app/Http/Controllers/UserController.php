@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\{User, Theme, TransactionType};
 use DB;
 use Auth;
+use Str;
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class UserController extends Controller
 {
@@ -122,6 +126,92 @@ class UserController extends Controller
 
     public function restore(Request $req){
         User::withTrashed()->find($req->id)->restore();
+    }
+
+    public function forgotPassword(Request $req){
+        require base_path("vendor/autoload.php");
+        $mail = new PHPMailer(true);     // Passing `true` enables exceptions
+        try {
+            // Email server settings
+            $mail->SMTPDebug = 0;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';             //  smtp host
+            $mail->SMTPAuth = true;
+            $mail->Username = 'info@onehealthnetwork.com.ph';   //  sender username
+            $mail->Password = '1nf0P@55w0rd';       // sender password
+            $mail->SMTPSecure = 'tls';                  // encryption - ssl/tls
+            $mail->Port = 587;                          // port - 587/465
+
+            $mail->setFrom('info@onehealthnetwork.com.ph', 'One Health Network');
+            $mail->addAddress($req->email);
+
+            $mail->isHTML(true);                // Set email content format to HTML
+
+            $mail->Subject = "Password Reset";
+
+            $route = route('resetPassword');
+            $link = "<a href='$route?email=$req->email'>link</a>";
+            $mail->Body    = "Click $link to reset password";
+
+            // $mail->AltBody = plain text version of email body;
+
+            if( !$mail->send() ) {
+                echo "Email sending failed";
+            }
+            
+            else {
+                echo "Email sent successfully";
+            }
+
+        } catch (Exception $e) {
+            echo "Error. Email not sent";
+        }
+    }
+
+    public function resetPassword(Request $req){
+
+        require base_path("vendor/autoload.php");
+        $mail = new PHPMailer(true);     // Passing `true` enables exceptions
+        try {
+            $pass = Str::random(8);
+
+            $user = User::where('email', $req->email)->first();
+            $user->password = $pass;
+            $user->save();
+
+            // Email server settings
+            $mail->SMTPDebug = 0;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';             //  smtp host
+            $mail->SMTPAuth = true;
+            $mail->Username = 'info@onehealthnetwork.com.ph';   //  sender username
+            $mail->Password = '1nf0P@55w0rd';       // sender password
+            $mail->SMTPSecure = 'tls';                  // encryption - ssl/tls
+            $mail->Port = 587;                          // port - 587/465
+
+            $mail->setFrom('info@onehealthnetwork.com.ph', 'One Health Network');
+            $mail->addAddress($req->email);
+
+            $mail->isHTML(true);                // Set email content format to HTML
+
+            $mail->Subject = "New Password";
+
+            $route = route('resetPassword');
+            $mail->Body    = "Your new password is: <b>$pass</b>. <br>Change your password immediately after login.";
+
+            // $mail->AltBody = plain text version of email body;
+
+            if( !$mail->send() ) {
+                echo "Email sending failed";
+            }
+            
+            else {
+                echo "Email sent successfully";
+            }
+
+        } catch (Exception $e) {
+            echo "Error. Email not sent";
+        }
     }
 
     private function _view($view, $data = array()){

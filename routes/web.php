@@ -17,7 +17,8 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-// Route::view('/', 'welcome');
+Route::get('forgotPassword', 'UserController@forgotPassword')->name('forgotPassword');
+Route::get('resetPassword', 'UserController@resetPassword')->name('resetPassword');
 
 Route::group([
         'middleware' => 'auth',

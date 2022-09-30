@@ -85,7 +85,18 @@
             title: 'Enter your email address',
             input: 'email',
         }).then(result => {
-            console.log(result);
+            if(result.value){
+                swal.showLoading();
+                $.ajax({
+                    url: '{{ route('forgotPassword') }}',
+                    data: {email: result.value},
+                    success: result => {
+                        Swal.fire({
+                            title: result,
+                        })
+                    }
+                })
+            }
         })
     }
 </script>
