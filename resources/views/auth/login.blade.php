@@ -24,7 +24,7 @@
         </div>
         <div class="w-full py-6 z-20">
             <h1 class="my-6">
-                <img class="w-auto h-40 inline-flex" src="{{ asset('images/ohn/OneHealthPharmacy2.png') }}" style="width: 250px !important; height: 250px !important">
+                <img class="w-auto h-40 inline-flex" src="{{ asset('images/ohn/OneHealthPharmacy2.png') }}">
             </h1>
             <form method="POST" action="{{ route('login') }}" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
 				@csrf
@@ -36,9 +36,9 @@
                     <input class="text-gray-700 rounded-md block w-full p-4 text-lg rounded-sm bg-white" type="password"
                            name="password" id="password" placeholder="Password">
                 </div>
-                {{-- <div class="text-right text-gray-400 hover:underline hover:text-gray-100">
-                    <a href="#">Forgot your password?</a>
-                </div> --}}
+                <div class="text-right text-gray-400 hover:text-gray-100">
+                    <a onclick="forgotPassword()">Forgot your password?</a>
+                </div>
                 <div class="px-4 pb-2 pt-4">
                     <button id="loginBtn" type="submit" class="uppercase block w-full p-4 text-lg rounded-full bg-blue-500 hover:bg-indigo-600 focus:outline-none">
                         sign in
@@ -79,6 +79,15 @@
             `,
 		});
 	@endif
+
+    function forgotPassword(){
+        Swal.fire({
+            title: 'Enter your email address',
+            input: 'email',
+        }).then(result => {
+            console.log(result);
+        })
+    }
 </script>
 </body>
 </html>
