@@ -24,7 +24,7 @@
         </div>
         <div class="w-full py-6 z-20">
             <h1 class="my-6">
-                <img class="w-auto h-40 inline-flex" src="{{ asset('images/ohn/OneHealthPharmacy2.png') }}">
+                <img class="w-auto h-40 inline-flex" src="{{ asset('images/ohn/OneHealthPharmacy2.png') }}" style="width: 50%; height: 50%;">
             </h1>
             <form method="POST" action="{{ route('login') }}" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
 				@csrf
