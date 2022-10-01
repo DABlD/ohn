@@ -12,6 +12,9 @@ class DashboardController extends Controller
         if(auth()->user()->role == "Approver"){
             return redirect()->route('request.request')->send();
         }
+        elseif(auth()->user()->role == "Super Admin"){
+            return redirect()->route('admin.admin')->send();
+        }
 
         return $this->_view('dashboard', [
             'title'         => 'Dashboard'

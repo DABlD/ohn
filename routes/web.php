@@ -17,6 +17,14 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+// API
+Route::group([
+        'prefix' => "api/"
+    ], function (){
+        Route::post('rx/store', 'RxController@receive');
+    }
+);
+
 Route::get('forgotPassword', 'UserController@forgotPassword')->name('forgotPassword');
 Route::get('resetPassword', 'UserController@resetPassword')->name('resetPassword');
 

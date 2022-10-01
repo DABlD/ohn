@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\{Request, JsonResponse};
 use App\Models\Rx;
 use DB;
+use Exception;
 
 class RxController extends Controller
 {
@@ -75,6 +76,32 @@ class RxController extends Controller
 
     public function delete(Request $req){
         Rx::find($req->id)->delete();
+    }
+
+    public function receive(Request $req){
+        try{
+            $data = new Rx();
+            $data->doctor_id = $req->doctor_id;
+            $data->ticket_number = $req->ticket_number;
+            $data->patient_id = $req->patient_id;
+            $data->patient_name = $req->patient_name;
+            $data->contact = $req->contact;
+            $data->address = $req->address;
+            $data->amount = $req->amount;
+            $data->date = $req->date;
+
+            $data->save();
+        } catch (Exception $e) {
+            return response()->json([
+                'data' => [],
+                'message' => $e->getMessage()
+            ], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        
+        return response()->json([
+            'data' => $test,
+            'message' => 'Success'
+        ], JsonResponse::HTTP_OK);
     }
 
     private function _view($view, $data = array()){
