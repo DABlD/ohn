@@ -16,7 +16,7 @@ class ThemeSeeder extends Seeder
     {
         $array = [
             ["app_name", "OHN"],
-            ["logo_img", 'images/ohn/OneHealthPharmacy.png'],
+            ["logo_img", 'images/ohn/OneHealthPharmacy2.png'],
             ["login_banner_img", "images/ohn/banner.png"],
             ["login_bg_img", null],
             ["sidebar_bg_color", "#343a40"],
