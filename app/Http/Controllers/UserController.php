@@ -67,7 +67,7 @@ class UserController extends Controller
 
     private function initAdmin($user){
         $array = [
-            ["app_name", "SEDI"],
+            ["app_name", "OHN"],
             ["logo_img", 'images/ohn/OneHealthPharmacy2.png'],
             ["login_banner_img", "images/ohn/OneHealth.png"],
             ["login_bg_img", null],
