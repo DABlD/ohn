@@ -97,7 +97,10 @@
 					types = JSON.parse(types);
 					
 					typeString = "";
-					types.forEach(type => {
+					types.forEach((type, key) => {
+						if(key == 0){
+							tType = type.id;
+						}
 						typeString += `
 							<option value="${type.id}">${type.type}</option>
 						`;
@@ -108,6 +111,9 @@
 					$('#trx').change(e => {
 						tType = e.target.value;
 					});
+
+					// CREATE TABLE
+					createTable();
 				}
 			});
 
@@ -140,9 +146,6 @@
 					});
 				}
 			});
-
-			// CREATE TABLE
-			createTable();
 		});
 
 		function createTable(){
