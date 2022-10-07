@@ -86,8 +86,10 @@ class BhcController extends Controller
     }
 
     public function store(Request $req){
+        $rhu = Rhu::where('user_id', auth()->user()->id)->first();
+
         $entry = new Bhc();
-        $entry->rhu_id = $req->rhu_id;
+        $entry->rhu_id = $rhu->id;
         $entry->name = $req->name;
         $entry->code = $req->code;
         $entry->region = $req->region;

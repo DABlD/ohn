@@ -114,7 +114,7 @@
 		        			let rhu = row.innerText;
 		        			$(row).after(`
 		        				<td>
-                        			@if(auth()->user()->role == "Admin")
+                        			@if(auth()->user()->role == "Rhu")
 		        					<a class='btn btn-primary btn-sm' data-toggle='tooltip' title='Add Branch' onclick='create("${rhu}")'>
 		        					    <i class='fas fa-plus fa-2xl'></i>
 		        					</a>
@@ -137,16 +137,6 @@
 		function create(selectedRhu = null){
 			Swal.fire({
 				html: `
-					<div class="row iRow">
-					    <div class="col-md-3 iLabel">
-					        Franchise
-					    </div>
-					    <div class="col-md-9 iInput">
-					        <select name="rhu_id" class="form-control">
-					        	<option value=""></option>
-					        </select>
-					    </div>
-					</div>
 	                ${input("code", "Code", null, 3, 9)}
 	                ${input("name", "Name", null, 3, 9)}
 	                ${input("region", "Region", null, 3, 9)}
@@ -157,39 +147,12 @@
 				showCancelButton: true,
 				cancelButtonColor: errorColor,
 				cancelButtonText: 'Cancel',
-				didOpen: () => {
-					$.ajax({
-						url: "{{ route('rhu.get') }}",
-						data: {
-							select: "*",
-						},
-						success: rhus => {
-							rhus = JSON.parse(rhus);
-							rhuString = "";
-
-							rhus.forEach(rhu => {
-								rhuString += `
-									<option value="${rhu.id}">${rhu.company_name} - ${rhu.company_code}</option>
-								`;
-							});
-
-							$("[name='rhu_id']").append(rhuString);
-							$("[name='rhu_id']").select2({
-								placeholder: "Select Franchise"
-							});
-
-							if(selectedRhu){
-								$("[name='rhu_id']").select2("val", $(`[name='rhu_id'] option:contains('${selectedRhu}')`).val());
-							}
-						}
-					})
-				},
 				preConfirm: () => {
 				    swal.showLoading();
 				    return new Promise(resolve => {
 				    	let bool = true;
 
-			            if($('.swal2-container input:placeholder-shown').length || $("[name='rhu_id']").val() == ""){
+			            if($('.swal2-container input:placeholder-shown').length){
 			                Swal.showValidationMessage('Fill all fields');
 			            }
 			            else{
@@ -208,7 +171,6 @@
 						url: "{{ route('bhc.store') }}",
 						type: "POST",
 						data: {
-							rhu_id: $("[name='rhu_id']").val(),
 							code: $("[name='code']").val(),
 							name: $("[name='name']").val(),
 							region: $("[name='region']").val(),
@@ -237,35 +199,12 @@
 				showCancelButton: true,
 				cancelButtonColor: errorColor,
 				cancelButtonText: 'Cancel',
-				didOpen: () => {
-					$.ajax({
-						url: "{{ route('rhu.get') }}",
-						data: {
-							select: "*",
-						},
-						success: rhus => {
-							rhus = JSON.parse(rhus);
-							rhuString = "";
-
-							rhus.forEach(rhu => {
-								rhuString += `
-									<option value="${rhu.id}">${rhu.company_name} - ${rhu.company_code}</option>
-								`;
-							});
-
-							$("[name='rhu_id']").append(rhuString);
-							$("[name='rhu_id']").select2({
-								placeholder: "Select Franchise"
-							});
-						}
-					})
-				},
 				preConfirm: () => {
 				    swal.showLoading();
 				    return new Promise(resolve => {
 				    	let bool = true;
 
-			            if($('.swal2-container input:placeholder-shown').length || $("[name='rhu_id']").val() == ""){
+			            if($('.swal2-container input:placeholder-shown').length){
 			                Swal.showValidationMessage('Fill all fields');
 			            }
 			            else{
@@ -284,7 +223,6 @@
 						url: "{{ route('bhc.store') }}",
 						type: "POST",
 						data: {
-							rhu_id: $("[name='rhu_id']").val(),
 							code: $("[name='code']").val(),
 							name: $("[name='name']").val(),
 							region: $("[name='region']").val(),
