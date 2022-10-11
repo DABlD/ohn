@@ -24,11 +24,11 @@
                     			<tr>
                     				<th>User</th>
                     				<th>Medicine</th>
-                    				<th>Category</th>
                     				<th>Code</th>
                     				<th>Brand</th>
                     				<th>Packaging</th>
-                    				<th>Qty</th>
+                    				<th>Lot #</th>
+                    				<th>Quantity</th>
                     				<th>Date Wasted</th>
                     			</tr>
                     		</thead>
