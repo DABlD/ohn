@@ -258,7 +258,7 @@
 			$.ajax({
 				url: "{{ route('medicine.getCategories') }}",
 				data: {
-					select: "*",
+					select: "categories.*",
 					join: true,
 					where: ['r.user_id', {{ auth()->user()->id }}]
 				},
