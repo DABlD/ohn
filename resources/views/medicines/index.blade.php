@@ -79,7 +79,7 @@
 					{data: 'brand'},
 					{data: 'name'},
 					{data: 'packaging'},
-					{data: 'point'},
+					{data: 'reorder.point'},
 					{data: 'rs'},
 					{data: 'actions'},
 				],
@@ -638,6 +638,9 @@
 							],
 							point: $("[name='reorder_point']").val(),
 						},
+						message: "Success"
+					}, () => {
+						reload();
 					});
 				}
 			});
