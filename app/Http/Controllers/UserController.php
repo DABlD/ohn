@@ -115,8 +115,9 @@ class UserController extends Controller
     }
 
     public function updatePassword(Request $req){
-        $user = User::find(auth()->user()->id);
+        $user = User::find($req->id);
         $user->password = $req->password;
+
         $user->save();
     }
 
