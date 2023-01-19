@@ -13,7 +13,7 @@
                             List
                         </h3>
 
-                        @if(auth()->user()->role == "Admin")
+                        @if(auth()->user()->role == "RHU")
                         	@include('bhcs.includes.toolbar')
                         @endif
                     </div>

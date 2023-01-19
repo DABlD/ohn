@@ -76,7 +76,7 @@ class DatatableController extends Controller
     }
 
     public function bhc(Request $req){
-        $array = Bhc::select($req->select);
+        $array = Bhc::select($req->select ?? "*");
 
         // IF HAS JOIN //CUSTOM
         if($req->join){
@@ -96,11 +96,8 @@ class DatatableController extends Controller
             $array = $array->where('r.user_id', auth()->user()->id);
         }
 
-        if($req->where){
-        }
-
         $array = $array->get();
-
+        
         // IF HAS GROUP
         if($req->group){
             $array = $array->groupBy($req->group);
