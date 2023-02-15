@@ -319,8 +319,8 @@
 				request = $(request);
 				let temp = {};
 
-				let lot = request.find('select').val();
-				let exp = request.find('.expiry_date').text();
+				let lot = request.find('.lot').text();
+				let exp = request.find('select').val();
 				let unit_price = request.find('.unit_price').text();
 				let id = request.attr('id');
 
@@ -329,7 +329,7 @@
 				}
 				else{
 					temp.lot = lot;
-					temp.exp = exp;
+					temp.exp = moment(exp).format(dateFormat);
 					temp.id = id;
 					temp.unit_price = unit_price;
 
