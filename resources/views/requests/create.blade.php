@@ -195,11 +195,19 @@
 					   d.table = 'medicines';
 					   d.select = ['medicines.*'];
 					   d.where = ["category_id", category];
+					   d.load = ["reorder.stocks"]
 					}
 				},
 				columns: [
 					{
 						render: (id, display, row) => {
+							let price = 0;
+
+							row.reorder.stocks.forEach(stock => {
+								price += stock.unit_price;
+							});
+
+							price = (price / row.reorder.stocks.length);
 							return `
 								<div class="row">
 									<div class="col-md-8" style="font-weight: bold;">
@@ -221,7 +229,7 @@
 										${row.brand}
 									</div>
 									<div class="col-md-4" style="text-align: right;">
-										₱${toFloat(row.unit_price)}
+										₱${toFloat(price)}
 									</div>
 								</div>
 							`;
@@ -348,11 +356,21 @@
 					url: "{{ route('medicine.get') }}",
 					data: {
 						select: "*",
-						where: ["id", id]
+						where: ["id", id],
+						load: ["reorder.stocks"]
 					},
 					success: medicine => {
 						medicine = JSON.parse(medicine)[0];
 						medicines[id] = 1;
+
+						let price = 0;
+
+						medicine.reorder.stocks.forEach(stock => {
+							price += stock.unit_price;
+						});
+
+						price = (price / medicine.reorder.stocks.length);
+
 						$('.footer').remove();
 						$("#table2 tbody").append(`
 							<tr class="item" data-id="${id}">
@@ -361,7 +379,7 @@
 									<input type="number" name="request_qty${id}" class="form-control request_qty" value="1" data-id=${id}>
 								</td>
 								<td class="price">
-									${toFloat(medicine.unit_price)}
+									${toFloat(price)}
 								</td>
 								<td>
 									<input type="number" class="form-control total" readonly>

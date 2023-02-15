@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{Medicine};
+use App\Models\{Medicine, Stock};
 
 class Reorder extends Model
 {
@@ -20,5 +20,9 @@ class Reorder extends Model
 
     public function medicine(){
         return $this->hasOne(Medicine::class, 'id', 'medicine_id');
+    }
+
+    public function stocks(){
+        return $this->hasMany(Stock::class, 'reorder_id', 'id');
     }
 }
