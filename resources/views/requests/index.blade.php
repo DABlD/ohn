@@ -404,7 +404,7 @@
 				reqRequested_by = !reqRequested_by ? req.requested_by : reqRequested_by;
 				reqDate = !reqDate ? req.transaction_date : reqDate;
 
-				let aQty = req.approved_qty;
+				let aQty = req.approved_qty ?? "-";
 				@if(auth()->user()->role != "RHU")
 				if(req.status == "For Approval"){
 					aQty = `
