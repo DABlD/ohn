@@ -152,7 +152,7 @@
 						f.order = ["created_at", "desc"];
 						f.status = search;
 						f.group = "reference";
-						f.like = ['user_id', "like", user_id];
+						f.like = ['requests.user_id', "like", user_id];
 					}
 				},
 				columns: [
