@@ -99,7 +99,7 @@ class RxController extends Controller
         }
         
         return response()->json([
-            'data' => $test,
+            'data' => $data,
             'message' => 'Success'
         ], JsonResponse::HTTP_OK);
     }
