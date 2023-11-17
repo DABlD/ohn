@@ -512,7 +512,8 @@
 									</tr>
 								</tbody>
 							</table>
-						`
+						`,
+						width: "700px"
 					})
 				}
 			})
