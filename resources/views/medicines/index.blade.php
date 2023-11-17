@@ -473,6 +473,11 @@
 								<td>${moment(stock.expiry_date).format(dateFormat2)}</td>
 								<td>${stock.unit_price}</td>
 								<td>${stock.qty}</td>
+								<td>
+									<a class='btn btn-success' data-toggle='tooltip' title='Edit Price' onClick='editPrice(${stock.id}, ${id})'>
+								        <i class='fas fa-pencil'></i>
+								    </a>
+								</td>
 							</tr>
 						`;
 					});
@@ -480,7 +485,7 @@
 					if(stockString == ""){
 						stockString = `
 							<tr>
-								<td colspan="4">No Stocks</td>
+								<td colspan="5">No Stocks</td>
 							</tr>
 						`;
 					}
@@ -494,6 +499,7 @@
 										<th>Expiry Date</th>
 										<th>Unit Price</th>
 										<th>Qty</th>
+										<th>Edit Price</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -502,11 +508,61 @@
 										<td colspan="2"></td>
 										<td>TOTAL</td>
 										<td>${total}</td>
+										<td></td>
 									</tr>
 								</tbody>
 							</table>
 						`
 					})
+				}
+			})
+		}
+
+		function editPrice(id, rid){
+			Swal.fire({
+				title: "Enter Price",
+				input: "number",
+				confirmButtonText: 'Update',
+				showCancelButton: true,
+				cancelButtonColor: errorColor,
+				cancelButtonText: 'Cancel',
+				preConfirm: e => {
+				    swal.showLoading();
+				    return new Promise(resolve => {
+				    	let bool = true;
+
+			            if(e.length == 0){
+			                Swal.showValidationMessage('Enter Price');
+			            }
+			            else{
+			            	let bool = false;
+			            	// Insert ajax validation
+
+				            setTimeout(() => {resolve()}, 500);
+			            }
+
+			            bool ? setTimeout(() => {resolve()}, 500) : "";
+				    });
+				},
+			}).then(result => {
+				if(result.value){
+					swal.showLoading();
+					update({
+						url: "{{ route('stock.update') }}",
+						data: {
+							id: id,
+							unit_price: result.value,
+						},
+						message: "Success"
+					}, () => {
+						reload();
+						setTimeout(() => {
+							inv(rid);
+						}, 800);
+					})
+				}
+				else{
+					inv(rid);
 				}
 			})
 		}

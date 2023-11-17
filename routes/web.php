@@ -272,6 +272,7 @@ Route::group([
             ], function () use($cname){
 
                 Route::get("get/", ucfirst($cname) . "Controller@get")->name('get');
+                Route::post("update/", ucfirst($cname) . "Controller@update")->name('update');
             }
         );
 

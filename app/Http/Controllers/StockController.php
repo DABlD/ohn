@@ -8,6 +8,10 @@ use DB;
 
 class StockController extends Controller
 {
+    public function __construct(){
+        $this->table = "stocks";
+    }
+
     public function get(Request $req){
         $array = Stock::select($req->select);
 
@@ -46,5 +50,16 @@ class StockController extends Controller
         }
 
         echo json_encode($array);
+    }
+
+    public function update(Request $req){
+        $query = DB::table($this->table);
+
+        if($req->where){
+            $query = $query->where($req->where[0], $req->where[1])->update($req->except(['id', '_token', 'where']));
+        }
+        else{
+            $query = $query->where('id', $req->id)->update($req->except(['id', '_token']));
+        }
     }
 }
