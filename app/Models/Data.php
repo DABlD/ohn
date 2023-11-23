@@ -26,7 +26,7 @@ class Data extends Model
     ];
 
     public function transaction_type(){
-        return $this->hasOne(TransactionType::class, 'id', 'transaction_types_id');
+        return $this->hasOne(TransactionType::class, 'id', 'transaction_types_id')->withTrashed();
     }
 
     public function rhu(){
