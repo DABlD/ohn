@@ -181,7 +181,7 @@
 								targets: [1,2,3,4,5,6,7,8],
 								render: value => {
 									console.log(value);
-									if(value > 0 && view == "amount"){
+									if(value != 0 && view == "amount"){
 										return value.toFixed(2);
 									}
 									else{
