@@ -90,19 +90,19 @@
 						where: ['admin_id', {{ auth()->user()->id }}]
 					@else(auth()->user()->role == "RHU")
 						join: true,
+						select: ['*', 'transaction_types.id as tid'],
 						where: ['r.user_id', {{ auth()->user()->id }}]
 					@endif
 				},
 				success: types => {
 					types = JSON.parse(types);
-					
 					typeString = "";
 					types.forEach((type, key) => {
 						if(key == 0){
-							tType = type.id;
+							tType = type.tid;
 						}
 						typeString += `
-							<option value="${type.id}">${type.type}</option>
+							<option value="${type.tid}">${type.type}</option>
 						`;
 					});
 
