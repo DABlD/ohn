@@ -166,7 +166,7 @@
 				],
 				columnDefs: [
 					{
-						targets: 6,
+						targets: 7,
 						render: date =>{;
 							return moment(date).format('MMM DD, YYYY');
 						}
