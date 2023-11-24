@@ -463,7 +463,12 @@ class ReportController extends Controller
 
         $temp = [];
 
-        foreach($data->unique('mname')->pluck('mname', 'packaging') as $packaging => $medicine){
+        $temp2 = [];
+        foreach($data->unique('mname') as $temp3){
+            $temp2[$temp3->mname] = $temp3->packaging;
+        }
+
+        foreach($temp2 as $medicine => $packaging){
             $temp[$medicine]["packaging"] = $packaging;
             foreach($data->unique('bname')->pluck('bname') as $bhc){
                 $temp[$medicine]["bhcs"][$bhc] = 0;
