@@ -182,7 +182,7 @@
 								render: value => {
 									console.log(value);
 									if(value != 0 && view == "amount"){
-										return value.toFixed(2);
+										return value.toLocaleString('en-US');
 									}
 									else{
 										return value;

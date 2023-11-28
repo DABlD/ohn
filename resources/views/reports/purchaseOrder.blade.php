@@ -122,6 +122,13 @@
 
 		function createTable(){
 			getColumns();
+			let temp = moment(to).diff(moment(from), 'days') + 3;
+			let cols = [];
+
+			for(i = 1; i < temp; i++){
+				cols.push(i);
+			}
+
 			table = $('#table').DataTable({
 				ajax: {
 					url: "{{ route('report.getPurchaseOrder') }}",
@@ -137,6 +144,19 @@
         		scrollX: true,
 				columns: columns,
         		pageLength: 25,
+				columnDefs: [
+					{
+						targets: cols,
+						render: value => {
+							if(value != 0 && view == "amount"){
+								return value.toLocaleString('en-US');
+							}
+							else{
+								return value;
+							}
+						}
+					}
+				],
         		order: []
 			});
 
