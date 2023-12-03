@@ -95,12 +95,12 @@ class DataController extends Controller
             $reorder->decrement('stock', $data->qty);
         }
 
-        $stock = Stock::where('reorder_id', $reorder->id)
-                    ->where('lot_number', $data->lot_number)
-                    ->where('expiry_date', $data->expiry_date->toDateTimeString())
-                    ->where('unit_price', $data->unit_price);
+        $stock = Stock::where('reorder_id', $reorder->id)->where('qty', '>', 0)->oldest();
+                    // ->where('lot_number', $data->lot_number)
+                    // ->where('expiry_date', $data->expiry_date->toDateTimeString())
+                    // ->where('unit_price', $data->unit_price);
 
-        if($stock->get()->count()){
+        if($stock->first()->count()){
             if($operator == "+"){
                 $stock->increment('qty', $data->qty);
             }
