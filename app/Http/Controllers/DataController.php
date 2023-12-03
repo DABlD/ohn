@@ -100,7 +100,7 @@ class DataController extends Controller
                     // ->where('expiry_date', $data->expiry_date->toDateTimeString())
                     // ->where('unit_price', $data->unit_price);
 
-        if($stock->first()->count()){
+        if($stock->first()){
             if($operator == "+"){
                 $stock->increment('qty', $data->qty);
             }

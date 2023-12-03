@@ -312,6 +312,12 @@ class ReportController extends Controller
         if(auth()->user()->role != "Admin"){
             $data = $data->where('user_id', auth()->user()->id);
         }
+        else{
+            if($req->user_id == "%%"){
+                $rhus = Rhu::where('admin_id', auth()->user()->id)->pluck('user_id');
+                $data = $data->whereIn('user_id', $rhus);
+            }
+        }
 
         $data = $data->orderBy('transaction_date', 'desc')->get();
 
