@@ -20,7 +20,7 @@ class CreateStocksTable extends Migration
             $table->string('lot_number');
             $table->datetime('expiry_date');
             $table->float("unit_price", 8, 2);
-            $table->unsignedInteger('qty');
+            $table->integer('qty');
 
             $table->timestamps();
         });
