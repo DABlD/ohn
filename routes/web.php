@@ -22,6 +22,9 @@ Route::group([
         'prefix' => "api/"
     ], function (){
         Route::post('rx/store', 'RxController@receive');
+
+        Route::get('sku/get', 'ApiController@getSku');
+        Route::get('sku/get/all', 'ApiController@allSku');
     }
 );
 
