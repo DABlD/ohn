@@ -90,6 +90,8 @@ class RxController extends Controller
             $data->amount = $req->amount;
             $data->date = $req->date;
 
+            $data->prescription = $req->prescription;
+
             $data->save();
         } catch (Exception $e) {
             return response()->json([
