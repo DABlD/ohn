@@ -25,6 +25,8 @@ Route::group([
 
         Route::get('sku/get', 'ApiController@getSku');
         Route::get('sku/get/all', 'ApiController@allSku');
+        Route::get('sku/getCategories', 'ApiController@getCategories');
+        Route::get('sku/getByCategories', 'ApiController@getByCategories');
     }
 );
 
