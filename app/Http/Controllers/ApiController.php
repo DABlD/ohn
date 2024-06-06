@@ -21,26 +21,54 @@ class ApiController extends Controller
             $ref_id = null;
 
             if(sizeof($sku->reorder->stocks)){
-                $temp2 = $sku->reorder->stocks->sortBy('unit_price')->first();
-
-                $stock = $temp2->qty;
-                $price = $temp2->unit_price;
-                $lot_number = $temp2->lot_number;
-                $ref_id = $temp2->id;
+                foreach($sku->reorder->stocks as $temp2){
+                    array_push($arr, [
+                        "image" => $sku->image,
+                        "code" => $sku->code,
+                        "brand" => $sku->brand,
+                        "name" => $sku->name,
+                        "packaging" => $sku->packaging,
+                        "category" => $sku->category->name,
+                        "stock" => $temp2->qty,
+                        "price" => $temp2->unit_price,
+                        "lot_number" => $temp2->lot_number,
+                        "ref_id" => $temp2->id
+                    ]);
+                }
             }
+        }
 
-            array_push($arr, [
-                "image" => $sku->image,
-                "code" => $sku->code,
-                "brand" => $sku->brand,
-                "name" => $sku->name,
-                "packaging" => $sku->packaging,
-                "category" => $sku->category->name,
-                "stock" => $stock,
-                "price" => $price,
-                "lot_number" => $lot_number,
-                "ref_id" => $ref_id
-            ]);
+        return $arr;
+    }
+
+    public function getByCategories(Request $req){
+        $temp = Medicine::where('category_id', $req->id)->get();
+        $temp->load('category');
+        $temp->load('reorder.stocks');
+
+        $arr = [];
+        foreach($temp as $sku){
+            $stock = 0;
+            $price = 0;
+            $lot_number = null;
+            $ref_id = null;
+
+            if(sizeof($sku->reorder->stocks)){
+                foreach($sku->reorder->stocks as $temp2){
+                    array_push($arr, [
+                        "image" => $sku->image,
+                        "code" => $sku->code,
+                        "brand" => $sku->brand,
+                        "name" => $sku->name,
+                        "packaging" => $sku->packaging,
+                        "category" => $sku->category->name,
+                        "stock" => $temp2->qty,
+                        "price" => $temp2->unit_price,
+                        "lot_number" => $temp2->lot_number,
+                        "ref_id" => $temp2->id
+                    ]);
+                }
+            }
         }
 
         return $arr;
@@ -73,5 +101,9 @@ class ApiController extends Controller
         }
 
         return $arr;
+    }
+
+    public function getCategories(){
+        return Category::pluck('name', 'id');
     }
 }
