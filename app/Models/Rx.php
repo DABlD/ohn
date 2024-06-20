@@ -8,7 +8,8 @@ use App\Models\Rx;
 
 class Rx extends Model
 {
-    // use ;
+    use RxAttribute;
+
     protected $fillable = [
         'ticket_number','patient_id','patient_name',
         'contact','address','amount','date', 'doctor_id'

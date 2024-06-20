@@ -77,11 +77,47 @@
 					{data: 'date'},
 					{data: 'actions'}
 				],
+				columnDefs: [
+					{
+						targets: 6,
+						render: amount =>{
+							return toFloat(amount);
+						}
+					},
+					{
+						targets: 7,
+						render: date =>{
+							return moment(date).format(dateFormat2);
+						}
+					}
+				],
         		pageLength: 25,
 				// drawCallback: function(){
 				// 	init();
 				// }
 			});
 		});
+
+		function prescriptions(id){
+			$.ajax({
+				url: '{{ route('rx.get') }}',
+				data: {
+					where: ['id', id],
+					select: 'prescription',
+				},
+				success: result => {
+					result = JSON.parse(result)[0];
+
+					let prescription = result.prescription;
+					if(prescription){
+						console.log(prescription);
+						prescription = JSON.parse(prescription);
+					}
+					else{
+						se('No Prescription Data');
+					}
+				}
+			})
+		}
 	</script>
 @endpush

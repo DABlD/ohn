@@ -76,7 +76,7 @@ function update(data, callback = null){
 }
 
 function toFloat(value, decimals = 2){
-	return parseFloat(value).toFixed(decimals);
+	return new Intl.NumberFormat('en-US').format(value);
 }
 
 function dateNow(){
